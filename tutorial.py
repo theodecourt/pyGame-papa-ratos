@@ -7,24 +7,41 @@ pygame.display.set_caption('PAPA RATOS')
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
-FPS = 30
+BORDER_DIAMETER = 30
 
-RATO_WIDTH, RATO_HEIGHT = 30, 30
+BORDER_LEFT = pygame.Rect(0, 0, BORDER_DIAMETER, HEIGHT)
+BORDER_RIGHT = pygame.Rect(WIDTH - BORDER_DIAMETER, 0, BORDER_DIAMETER, HEIGHT)
+BORDER_UP = pygame.Rect(0, 0, WIDTH, BORDER_DIAMETER)
+BORDER_DOWN = pygame.Rect(0, HEIGHT - BORDER_DIAMETER, WIDTH, BORDER_DIAMETER)
+
+FPS = 30
+VEL = 5
+
 COBRA_WIDTH, COBRA_HEIGHT = 30, 30
 
-RATO_IMG = pygame.image.load('cobra2.png').convert() #colocar nome da imagem do rato
-RATO_PEQUENO_IMG = pygame.transform.scale(RATO_IMG, (RATO_WIDTH, RATO_HEIGHT))
-COBRA_IMG = pygame.image.load('cobrinha.png').convert() #colocar nome da imagem do cobra
-COBRA_PEQUENA_IMG = pygame.transform.scale(COBRA_IMG, (COBRA_WIDTH, COBRA_HEIGHT))
+COBRA_IMG = pygame.image.load('cobra2.png').convert() #colocar nome da imagem do rato
+COBRA_PEQUENO_IMG = pygame.transform.scale(COBRA_IMG, (COBRA_WIDTH, COBRA_HEIGHT))
 
-def draw_window(red, yellow):
+def draw_window(cobra):
     WINDOW.fill(WHITE)
-    WINDOW.blit(RATO_PEQUENO_IMG, (yellow.x, yellow.y))
-    WINDOW.blit(COBRA_PEQUENA_IMG, (red.x, red.y))
+    pygame.draw.rect(WINDOW, BLACK, BORDER_LEFT)
+    pygame.draw.rect(WINDOW, BLACK, BORDER_RIGHT)
+    pygame.draw.rect(WINDOW, BLACK, BORDER_UP)
+    pygame.draw.rect(WINDOW, BLACK, BORDER_DOWN)
+    WINDOW.blit(COBRA_PEQUENO_IMG, (cobra.x, cobra.y))
     pygame.display.update()
 
-red = pygame.Rect(100, 300, RATO_WIDTH, RATO_HEIGHT)
-yellow = pygame.Rect(100, 300, COBRA_WIDTH, COBRA_HEIGHT)
+cobra = pygame.Rect(100, 300, COBRA_WIDTH, COBRA_HEIGHT)
+
+def cobra_handle_movement(keys_pressed,  cobra):
+    if keys_pressed[pygame.K_LEFT] and cobra.x - VEL > BORDER_DIAMETER: #left
+        cobra.x -= VEL
+    if keys_pressed[pygame.K_RIGHT] and cobra.x + VEL < WIDTH - (BORDER_DIAMETER + COBRA_WIDTH): #right
+        cobra.x += VEL
+    if keys_pressed[pygame.K_UP] and cobra.y - VEL > BORDER_DIAMETER: #up
+        cobra.y -= VEL
+    if keys_pressed[pygame.K_DOWN] and cobra.y + VEL < HEIGHT - (BORDER_DIAMETER + COBRA_HEIGHT): #down
+        cobra.y += VEL
 
 clock = pygame.time.Clock()
 game = True
@@ -33,9 +50,10 @@ while game:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        draw_window(red, yellow)
-        
-    red.x += 1
 
+    keys_pressed = pygame.key.get_pressed()
+    cobra_handle_movement(keys_pressed, cobra)
+    draw_window(cobra)
+    
 
 pygame.quit()
