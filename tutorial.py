@@ -64,6 +64,9 @@ class cobra(pygame.sprite.Sprite):
         self.y = 0
         self.cor = 'verde'
 
+    def movimentacao(self):
+        self.x += 10
+
 def tela_inicial():
     game = True
     while game:
