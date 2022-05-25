@@ -3,7 +3,8 @@ from config import *
 from assets import *
 from eskelleton import *
 
-def pagina_jogo():
+
+def pagina_jogo(WINDOW):
 #SPRITES
     all_sprites = pygame.sprite.Group()
     player = HEAD(assets)
@@ -24,8 +25,7 @@ def pagina_jogo():
 
     clock = pygame.time.Clock()
 
-    assets = load_assets()
-
+    assets = carrega_assets()
 
     game = True
     while game:
