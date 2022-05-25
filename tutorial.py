@@ -34,14 +34,12 @@ COBRA_WIDTH, COBRA_HEIGHT = 30, 30
 COBRA_IMG = pygame.image.load('cobra2.png').convert() #colocar nome da imagem do rato
 COBRA_PEQUENO_IMG = pygame.transform.scale(COBRA_IMG, (COBRA_WIDTH, COBRA_HEIGHT))
 
-
 def draw_window(cobra):
     WINDOW.fill(WHITE)
     pygame.draw.rect(WINDOW, BLACK, BORDER_LEFT)
     pygame.draw.rect(WINDOW, BLACK, BORDER_RIGHT)
     pygame.draw.rect(WINDOW, BLACK, BORDER_UP)
     pygame.draw.rect(WINDOW, BLACK, BORDER_DOWN)
-    WINDOW.blit(COBRA_PEQUENO_IMG, (cobra.x, cobra.y))
     pygame.display.update()
 
 cobra = pygame.Rect(100, 300, COBRA_WIDTH, COBRA_HEIGHT)
@@ -58,20 +56,29 @@ def cobra_handle_movement(keys_pressed,  cobra):
 
 clock = pygame.time.Clock()
 
-class cobra(pygame.sprite.Sprite):
+'''class cobra(pygame.sprite.Sprite):
     def __init__(self):
         self.x = 0
         self.y = 0
         self.cor = 'verde'
 
+
     def movimentacao(self):
         self.x += 10
-
+'''
 def tela_inicial():
     game = True
     while game:
+        clock.tick(FPS)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                game = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_0:
+                    game = False
         WINDOW.fill(GREEN)
         WINDOW.blit(text, (10, 10))
+        pygame.display.update()
     pygame.quit()
 
 
@@ -89,4 +96,4 @@ def pagina_jogo():
         
     pygame.quit()
 
-tela_inicial()
+pagina_jogo()
