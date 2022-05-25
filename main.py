@@ -2,7 +2,8 @@ import pygame
 from config import *
 from assets import *
 from eskelleton import *
-import pag_jogo
+from pag_inicial import *
+from pag_jogo import *
 
 pygame.init() 
 
@@ -10,8 +11,6 @@ pygame.init()
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('PAPA RATOS')
 
-#texto
-font = pygame.font.SysFont(None, 54)
 
 #desenhar borda
 def draw_border():
@@ -22,35 +21,7 @@ def draw_border():
     pygame.draw.rect(WINDOW, BLACK, BORDER_DOWN)
     pygame.display.update()
 
-#tela inicial
-def tela_inicial():
-    
-    while game:
-        clock.tick(FPS)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                state = QUIT
-                game = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_s:
-                    state = QUIT
-                    game = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:
-                    state = GAME
-                    game = False
-        text = font.render('COMEÇAR (ENTER)', True, (0, 0, 255))
-        text2 = font.render('SAIR (S)', True, (0, 0, 255))
-        WINDOW.fill(GREEN)
-        vertices = [(250, 100), (650, 100), (650, 200), (250, 200)]
-        pygame.draw.polygon(WINDOW, BLACK, vertices)
-        WINDOW.blit(text, (274, 135))
-        vertices = [(250, 250), (650, 250), (650, 350), (250, 350)]
-        pygame.draw.polygon(WINDOW, BLACK, vertices)
-        WINDOW.blit(text2, (380, 285))
-        pygame.display.update()
-    
-    return state
+cobra = pygame.Rect(100, 300, COBRA_WIDTH, COBRA_HEIGHT)
 
 
 '''
@@ -75,9 +46,9 @@ def perdeu():
 state = INIT
 while state != QUIT:
     if state == INIT:
-        state = tela_inicial()
+        state = tela_inicial(WINDOW)
     elif state == GAME:
-        state = pag_jogo()
+        state = pagina_jogo(WINDOW)
     else:
         state = QUIT
 
