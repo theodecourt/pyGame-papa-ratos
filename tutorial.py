@@ -34,6 +34,21 @@ COBRA_WIDTH, COBRA_HEIGHT = 30, 30
 COBRA_IMG = pygame.image.load('cobra2.png').convert() #colocar nome da imagem do rato
 COBRA_PEQUENO_IMG = pygame.transform.scale(COBRA_IMG, (COBRA_WIDTH, COBRA_HEIGHT))
 
+#classes
+class HEAD(pygame.sprite.Sprite):
+    def __init__(self, assets):
+        self.image = 
+        self.mask = 
+        self.rect = self.image.get_rect()
+        self.rect.x = 
+        self.rect.y = 
+        self.speedx = 8
+        self.speedy = 8
+    
+    def update(self):
+        self.rect.x += self.speedx
+        self.rect.y += self.speedy
+
 def draw_window(cobra):
     WINDOW.fill(WHITE)
     pygame.draw.rect(WINDOW, BLACK, BORDER_LEFT)
