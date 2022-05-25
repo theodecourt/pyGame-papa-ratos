@@ -8,8 +8,9 @@ def tela_inicial(WINDOW):
     #texto
     font = pygame.font.SysFont(None, 54)
     clock = pygame.time.Clock()
-    assets = carrega_assets()
+    #assets = carrega_assets()
     
+    game = True
     while game:
         clock.tick(FPS)
         for event in pygame.event.get():

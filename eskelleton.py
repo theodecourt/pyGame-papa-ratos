@@ -1,12 +1,16 @@
 import pygame
 import random
+from config import *
+from assets import *
+from eskelleton import *
+
 
 class HEAD(pygame.sprite.Sprite):
     def __init__(self, assets):
         
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = assets['HEAD_IMAGE']
+        self.image = assets[HEAD_IMG]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH/2
@@ -24,14 +28,14 @@ class RAT(pygame.sprite.Sprite):
         
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = assets['RAT_IMAGE']
+        self.image = assets[RAT_IMG]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
-        self.rect.x = random.randint(a, b)
-        self.rect.y = random.randint(a, b)
+        self.rect.x = random.randint(0, WIDTH)
+        self.rect.y = random.randint(0, HEIGHT)
 
 
-class WALLS(pygame.sprite.Sprite):
+'''class WALLS(pygame.sprite.Sprite):
     def __init__(self, assets):
         
         pygame.sprite.Sprite.__init__(self)
@@ -40,4 +44,4 @@ class WALLS(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(a, b)
-        self.rect.y = random.randint(a, b)
+        self.rect.y = random.randint(a, b)'''

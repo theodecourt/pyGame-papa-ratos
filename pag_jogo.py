@@ -4,12 +4,16 @@ from assets import *
 from eskelleton import *
 
 
+
 def pagina_jogo(WINDOW):
 #SPRITES
+
+    assets = carrega_assets()
+
     all_sprites = pygame.sprite.Group()
     player = HEAD(assets)
     all_sprites.add(player)
-    body = pygame.sprite.Group()
+    #body = pygame.sprite.Group()
     all_rats = pygame.sprite.Group()
     maze_walls = pygame.sprite.Group()
 
@@ -25,7 +29,6 @@ def pagina_jogo(WINDOW):
 
     clock = pygame.time.Clock()
 
-    assets = carrega_assets()
 
     game = True
     while game:
@@ -41,7 +44,7 @@ def pagina_jogo(WINDOW):
                     player.rect.y -= player.speedy
                 if event.key == pygame.K_DOWN:     #down
                     player.rect.y += player.speedy
-            pygame.display.update()  # Mostra o novo frame para o jogador'''
+            pygame.display.update()  # Mostra o novo frame para o jogador
         
         WINDOW.fill((0, 0, 0))  # Preenche com a cor branca
         all_sprites.draw(WINDOW)
