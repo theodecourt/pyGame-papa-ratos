@@ -46,8 +46,15 @@ class HEAD(pygame.sprite.Sprite):
         self.speedy = 8
     
     def update(self):
-        self.rect.x += self.speedx
         self.rect.y += self.speedy
+        if keys_pressed[pygame.K_LEFT]: #left
+            self.rect.x += self.speedx
+        if keys_pressed[pygame.K_RIGHT] and cobra.x + VEL < WIDTH - (BORDER_DIAMETER + COBRA_WIDTH): #right
+            cobra.x += VEL
+        if keys_pressed[pygame.K_UP] and cobra.y - VEL > BORDER_DIAMETER: #up
+            cobra.y -= VEL
+        if keys_pressed[pygame.K_DOWN] and cobra.y + VEL < HEIGHT - (BORDER_DIAMETER + COBRA_HEIGHT): #down
+            cobra.y += VEL
 
 def draw_window(cobra):
     WINDOW.fill(WHITE)
@@ -58,16 +65,6 @@ def draw_window(cobra):
     pygame.display.update()
 
 cobra = pygame.Rect(100, 300, COBRA_WIDTH, COBRA_HEIGHT)
-
-def cobra_handle_movement(keys_pressed,  cobra):
-    if keys_pressed[pygame.K_LEFT] and cobra.x - VEL > BORDER_DIAMETER: #left
-        cobra.x -= VEL
-    if keys_pressed[pygame.K_RIGHT] and cobra.x + VEL < WIDTH - (BORDER_DIAMETER + COBRA_WIDTH): #right
-        cobra.x += VEL
-    if keys_pressed[pygame.K_UP] and cobra.y - VEL > BORDER_DIAMETER: #up
-        cobra.y -= VEL
-    if keys_pressed[pygame.K_DOWN] and cobra.y + VEL < HEIGHT - (BORDER_DIAMETER + COBRA_HEIGHT): #down
-        cobra.y += VEL
 
 clock = pygame.time.Clock()
 
