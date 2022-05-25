@@ -2,6 +2,8 @@ import pygame
 from config import *
 from assets import *
 from eskelleton import *
+import pag_jogo
+
 pygame.init() 
 
 #especificacoes tela
@@ -19,8 +21,6 @@ def draw_border():
     pygame.draw.rect(WINDOW, BLACK, BORDER_UP)
     pygame.draw.rect(WINDOW, BLACK, BORDER_DOWN)
     pygame.display.update()
-
-cobra = pygame.Rect(100, 300, COBRA_WIDTH, COBRA_HEIGHT)
 
 #tela inicial
 def tela_inicial():
@@ -77,7 +77,7 @@ while state != QUIT:
     if state == INIT:
         state = tela_inicial()
     elif state == GAME:
-        state = pagina_jogo()
+        state = pag_jogo()
     else:
         state = QUIT
 
