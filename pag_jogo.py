@@ -36,6 +36,12 @@ def pagina_jogo(WINDOW):
         # ----- Trata eventos
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
+                if event.type == pygame.QUIT:
+                    state = QUIT
+                    game = False
+                if event.key == pygame.K_s:
+                    state = QUIT
+                    game = False
                 if event.key == pygame.K_LEFT:   #left
                     player.rect.x -= player.speedx
                 if event.key == pygame.K_RIGHT: #right
