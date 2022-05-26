@@ -13,9 +13,7 @@ CENARIO = 'cenario'
 HEAD_IMG = 'cabeca'
 BODY_IMG = 'body'
 RAT_IMG = 'rato'
-MAZE_WALLS1_IMG = 'paredes1'
-MAZE_WALLS2_IMG = 'paredes2'
-MAZE_WALLS3_IMG = 'paredes3'
+
 
 #animacoes
 EATING_ANIM = 'eating_anim'
@@ -29,20 +27,14 @@ DIE_SOUND = 'die_sound'
 
 def carrega_assets():
     assets = {}
-
-   # assets[CENARIO] = pygame.image.load(os.path.join(IMG_DIR, 'cenario.png')).convert()
-    assets[HEAD_IMG] = pygame.image.load('assets/imagens/rato.png').convert_alpha()
+    #assets[CENARIO] = pygame.image.load(os.path.join(IMG_DIR, 'cenario.png')).convert()
+    assets[HEAD_IMG] = pygame.image.load('assets/imagens/roxooficial.png').convert_alpha()
     assets[HEAD_IMG] = pygame.transform.scale(assets[HEAD_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
-    #assets[BODY_IMG] = pygame.image.load(os.path.join(IMG_DIR,'roxocobra.png')).convert_alpha()
-    #assets[BODY_IMG] = pygame.transform.scale(assets[BODY_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
+    assets[BODY_IMG] = pygame.image.load('assets/imagens/roxooficial.png').convert_alpha()
+    assets[BODY_IMG] = pygame.transform.scale(assets[BODY_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
     assets[RAT_IMG] = pygame.image.load('assets/imagens/rato.png').convert_alpha()
     assets[RAT_IMG] = pygame.transform.scale(assets[RAT_IMG], (RATO_WIDTH, RATO_HEIGHT))
-    #assets[MAZE_WALLS1_IMG] = pygame.image.load(os.path.join(IMG_DIR,'paredes1.png')).convert_alpha()
-    #assets[MAZE_WALLS1_IMG] = pygame.transform.scale(assets[MAZE_WALLS1_IMG], (PAREDE1_WIDTH, PAREDE1_HEIGHT))
-    #assets[MAZE_WALLS2_IMG] = pygame.image.load(os.path.join(IMG_DIR,'paredes2.png')).convert_alpha()
-    #assets[MAZE_WALLS2_IMG] = pygame.transform.scale(assets[MAZE_WALLS2_IMG], (PAREDE2_WIDTH, PAREDE2_HEIGHT))
-    #assets[MAZE_WALLS3_IMG] = pygame.image.load(os.path.join(IMG_DIR,'paredes3.png')).convert_alpha()
-    #assets[MAZE_WALLS3_IMG] = pygame.transform.scale(assets[MAZE_WALLS3_IMG], (PAREDE3_WIDTH, PAREDE3_HEIGHT))
+
 
     # Carrega os sons do jogo
     '''pygame.mixer.music.load('assets/sons/tgfcoder-FrozenJam-SeamlessLoop.ogg')

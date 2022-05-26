@@ -1,3 +1,4 @@
+from re import S
 import pygame
 from config import *
 from assets import *
@@ -28,7 +29,10 @@ def pagina_jogo(WINDOW):
     all_rats.add(rat)
 
     clock = pygame.time.Clock()
-
+    direita = 0
+    esquerda = 0
+    cima = 0
+    baixo = 0
 
     game = True
     while game:
@@ -43,15 +47,34 @@ def pagina_jogo(WINDOW):
                     state = QUIT
                     game = False
                 if event.key == pygame.K_LEFT:   #left
-                    player.rect.x -= player.speedx
+                    esquerda = 1
+                    direita = 0
+                    baixo = 0
+                    cima = 0
                 if event.key == pygame.K_RIGHT: #right
-                    player.rect.x += player.speedx
+                    esquerda = 0
+                    direita = 1
+                    baixo = 0
+                    cima = 0
                 if event.key == pygame.K_UP:       #up
-                    player.rect.y -= player.speedy
+                    esquerda = 0
+                    direita = 0
+                    baixo = 0
+                    cima = 1
                 if event.key == pygame.K_DOWN:     #down
-                    player.rect.y += player.speedy
+                    esquerda = 0
+                    direita = 0
+                    baixo = 1
+                    cima = 0
             pygame.display.update()  # Mostra o novo frame para o jogador
-        
-        WINDOW.fill((0, 0, 0))  # Preenche com a cor branca
+        if cima == 1 :
+            player.speedy -= VEL
+        if direita == 1:
+            player.speedx += VEL
+        if esquerda == 1 :
+            player.speedx -= VEL
+        if baixo == 1 :
+            player.speedy += VEL
+        WINDOW.fill(WHITE)  # Preenche com a cor branca
         all_sprites.draw(WINDOW)
         pygame.display.update()  # Mostra o novo frame para o jogador 
