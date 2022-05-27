@@ -1,32 +1,47 @@
 import pygame
-pygame.init
+import random
+from config import *
+from assets import *
+from eskelleton import *
+
 
 class HEAD(pygame.sprite.Sprite):
     def __init__(self, assets):
         
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = assets['roxocobra']
+        self.image = assets[HEAD_IMG]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
-        self.rect.x = 
-        self.rect.y = 
-        self.speedx = 8
-        self.speedy = 8
+        self.rect.centerx = WIDTH/2
+        self.rect.centery = HEIGHT/2
+        self.speedx = 0
+        self.speedy = 0
     
     def update(self):
-        if keys_pressed[pygame.K_LEFT]: #left
-            self.rect.x -= self.speedx
-        if keys_pressed[pygame.K_RIGHT]: #right
-            self.rect.x += self.speedx
-        if keys_pressed[pygame.K_UP]: #up
-            self.rect.y += self.speedy
-        if keys_pressed[pygame.K_DOWN]: #down
-            self.rect.y -= self.speedy
+        self.rect.x += self.speedx  
+        self.rect.y += self.speedy
+
 
 class RAT(pygame.sprite.Sprite):
     def __init__(self, assets):
         
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = assets['rato']
+        self.image = assets[RAT_IMG]
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randint(0, WIDTH)
+        self.rect.y = random.randint(0, HEIGHT)
+
+
+'''class WALLS(pygame.sprite.Sprite):
+    def __init__(self, assets):
+        
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = assets['xxx']
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randint(a, b)
+        self.rect.y = random.randint(a, b)'''

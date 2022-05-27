@@ -1,81 +1,45 @@
 import pygame
+from config import *
+#from assets import *
+from eskelleton import *
+from pag_inicial import *
+from pag_jogo import *
 
-pygame.init()
+pygame.init() 
 
 #especificacoes tela
-WIDTH, HEIGHT = 900, 500
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('PAPA RATOS')
 
-#cores
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-GREEN = (107, 142, 35)
-BROWN = (139, 0, 0)
 
-#texto
-font = pygame.font.SysFont(None, 48)
-text = font.render('COMECAR(ENTER)', True, (0, 0, 255))
-text2 = font.render('SAIR(S)', True, (0, 0, 255))
-
-#dimencoes bordas
-BORDER_DIAMETER = 30
-BORDER_LEFT = pygame.Rect(0, 0, BORDER_DIAMETER, HEIGHT)
-BORDER_RIGHT = pygame.Rect(WIDTH - BORDER_DIAMETER, 0, BORDER_DIAMETER, HEIGHT)
-BORDER_UP = pygame.Rect(0, 0, WIDTH, BORDER_DIAMETER)
-BORDER_DOWN = pygame.Rect(0, HEIGHT - BORDER_DIAMETER, WIDTH, BORDER_DIAMETER)
-
-#fps e velocidade da cobra
-FPS = 30
-VEL = 5
-
-#infos cobra
-COBRA_WIDTH, COBRA_HEIGHT = 30, 30
-COBRA_IMG = pygame.image.load('cobra2.png').convert() #colocar nome da imagem do rato
-COBRA_PEQUENO_IMG = pygame.transform.scale(COBRA_IMG, (COBRA_WIDTH, COBRA_HEIGHT))
-
-def draw_window(cobra):
-    WINDOW.fill(WHITE)
-    pygame.draw.rect(WINDOW, BLACK, BORDER_LEFT)
-    pygame.draw.rect(WINDOW, BLACK, BORDER_RIGHT)
-    pygame.draw.rect(WINDOW, BLACK, BORDER_UP)
-    pygame.draw.rect(WINDOW, BLACK, BORDER_DOWN)
-    WINDOW.blit(COBRA_PEQUENO_IMG, (cobra.x, cobra.y))
-    pygame.display.update()
-
-cobra = pygame.Rect(100, 300, COBRA_WIDTH, COBRA_HEIGHT)
-
-clock = pygame.time.Clock()
-
-class cobra(pygame.sprite.Sprite):
-    def __init__(self):
-        self.x = 0
-        self.y = 0
-        self.cor = 'verde'
-
-    def movimentacao(self):
-        self.x += 10
-
-def tela_inicial():
-    game = True
+'''
+def perdeu():
     while game:
-        WINDOW.fill(GREEN)
-        WINDOW.blit(text, (10, 10))
-    pygame.quit()
-
-
-def pagina_jogo():
-    game = True
-    while game:    
-        clock.tick(FPS)
+        # ----- Trata eventos
         for event in pygame.event.get():
+            # ----- Verifica consequências
             if event.type == pygame.QUIT:
-                running = False
+                game = False
 
-        keys_pressed = pygame.key.get_pressed()
-        cobra_handle_movement(keys_pressed, cobra)
-        draw_window(cobra)
-        
-    pygame.quit()
+        # ----- Gera saídas
+        window.fill((0,128,0))  # Preenche com a cor branca
+        cor = (255, 255, 0)
+        vertices = [(250, 0), (500, 200), (250, 400), (0, 200)]
+        pygame.draw.polygon(window, cor, vertices)
+        cor = ((0,0,139))
+        pygame.draw.circle(window, cor, (250, 200), 100)
+        # ----- Atualiza estado do jogo
+        pygame.display.update()  # Mostra o novo frame para o jogador'''
 
-tela_inicial()
+
+state = INIT
+while state != QUIT:
+    if state == INIT:
+        state = tela_inicial(WINDOW)
+    elif state == GAME:
+        state = pagina_jogo(WINDOW)
+    else:
+        state = QUIT
+
+pygame.quit()
+
