@@ -42,14 +42,18 @@ def pagina_jogo(WINDOW):
                 if event.key == pygame.K_s:
                     state = QUIT
                     game = False
-                if event.key == pygame.K_LEFT:   #left
-                    player.speedx -= VEL            
-                if event.key == pygame.K_RIGHT: #right
+                if event.key == pygame.K_LEFT and player.speedx != VEL and player.speedx != -VEL:     #left
+                    player.speedx -= VEL     
+                    player.speedy = 0       
+                if event.key == pygame.K_RIGHT and player.speedx != -VEL and player.speedx != VEL:    #right
                     player.speedx += VEL
-                if event.key == pygame.K_UP:       #up
+                    player.speedy = 0   
+                if event.key == pygame.K_UP and player.speedy != VEL and player.speedy != -VEL:       #up
                     player.speedy -= VEL
-                if event.key == pygame.K_DOWN:     #down
+                    player.speedx = 0   
+                if event.key == pygame.K_DOWN and player.speedy != -VEL and player.speedy != VEL:     #down
                     player.speedy += VEL
+                    player.speedx = 0   
                     
         all_sprites.update()   
         WINDOW.fill(WHITE)  # Preenche com a cor branca
