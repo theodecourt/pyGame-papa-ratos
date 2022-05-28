@@ -3,12 +3,11 @@ import pygame
 from config import *
 from assets import *
 from eskelleton import *
-
-
+import time
 
 def pagina_jogo(WINDOW):
 #SPRITES
-
+    state = GAME
     assets = carrega_assets()
 
     all_sprites = pygame.sprite.Group()
@@ -55,7 +54,26 @@ def pagina_jogo(WINDOW):
                     player.speedy += VEL
                     player.speedx = 0   
                     
-        all_sprites.update()   
+        if player.rect.x < 0 or player.rect.x > (WIDTH - COBRA_WIDTH) or player.rect.y < 0 or player.rect.y > (HEIGHT - COBRA_HEIGHT):
+            game = False
+            state = INIT
+            
+
+        all_sprites.update()  
+
+        papa_rato = pygame.sprite.spritecollide(player, all_rats, True, pygame.sprite.collide_mask)
+        
+        if len(papa_rato) > 0:
+            assets[NHAC_SOUND].play()
+            time.sleep(0.1)
+            for rato in papa_rato:
+                r = RAT(assets)
+                all_sprites.add(r)
+                all_rats.add(r)
+            
+
         WINDOW.fill(WHITE)  # Preenche com a cor branca
         all_sprites.draw(WINDOW)
         pygame.display.update()  # Mostra o novo frame para o jogador 
+    
+    return state

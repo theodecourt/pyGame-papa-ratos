@@ -6,6 +6,7 @@ from pag_inicial import *
 from pag_jogo import *
 
 pygame.init() 
+pygame.mixer.init()
 
 #especificacoes tela
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))

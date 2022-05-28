@@ -37,11 +37,11 @@ def carrega_assets():
 
 
     # Carrega os sons do jogo
-    '''pygame.mixer.music.load('assets/sons/tgfcoder-FrozenJam-SeamlessLoop.ogg')
-    pygame.mixer.music.set_volume(0.4)
+    #pygame.mixer.music.load('assets/sons/tgfcoder-FrozenJam-SeamlessLoop.ogg')
+    #pygame.mixer.music.set_volume(0.4)
     assets[NHAC_SOUND] = pygame.mixer.Sound('assets/sons/cobracomendo.wav')
-    assets[EW_SOUND] = pygame.mixer.Sound('assets/snd/expl6.wav')
-    assets[BATIDA_SOUND] = pygame.mixer.Sound('assets/snd/pew.wav')
-    assets[DIE_SOUND] = pygame.mixer.Sound('assets/snd/pew.wav')'''
+    #assets[EW_SOUND] = pygame.mixer.Sound('assets/snd/expl6.wav')
+    #assets[BATIDA_SOUND] = pygame.mixer.Sound('assets/snd/pew.wav')
+    #assets[DIE_SOUND] = pygame.mixer.Sound('assets/snd/pew.wav')
 
     return assets
