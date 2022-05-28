@@ -3,7 +3,7 @@ from config import *
 from assets import *
 from eskelleton import *
 
-def tela_inicial(WINDOW):
+def perdeu(WINDOW):
 
     #texto
     font = pygame.font.SysFont(None, 54)
