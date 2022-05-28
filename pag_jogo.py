@@ -56,7 +56,7 @@ def pagina_jogo(WINDOW):
                     
         if player.rect.x < 0 or player.rect.x > (WIDTH - COBRA_WIDTH) or player.rect.y < 0 or player.rect.y > (HEIGHT - COBRA_HEIGHT):
             game = False
-            state = INIT
+            state = GAMEOVER
             
 
         all_sprites.update()  

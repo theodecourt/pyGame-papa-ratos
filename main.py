@@ -39,6 +39,8 @@ while state != QUIT:
         state = tela_inicial(WINDOW)
     elif state == GAME:
         state = pagina_jogo(WINDOW)
+    elif state == GAMEOVER:
+        state == perdeu(WINDOW)
     else:
         state = QUIT
 
