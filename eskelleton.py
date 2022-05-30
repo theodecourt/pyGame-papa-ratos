@@ -45,3 +45,15 @@ class RAT(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(a, b)
         self.rect.y = random.randint(a, b)'''
+
+class BODY(pygame.sprite.Sprite):
+    def __init__(self, assets):
+
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = assets[HEAD_IMG]
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.centerx = WIDTH/2
+        self.rect.centery = HEIGHT/2
+        

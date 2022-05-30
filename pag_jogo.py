@@ -5,7 +5,6 @@ from assets import *
 from eskelleton import *
 
 
-
 def pagina_jogo(WINDOW):
 #SPRITES
 
