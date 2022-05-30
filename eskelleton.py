@@ -2,7 +2,6 @@ import pygame
 import random
 from config import *
 from assets import *
-from eskelleton import *
 
 
 class HEAD(pygame.sprite.Sprite):
@@ -17,12 +16,11 @@ class HEAD(pygame.sprite.Sprite):
         self.rect.centery = HEIGHT/2
         self.speedx = 0
         self.speedy = 0
-        self.pos = []
+        self.size = 0
     
     def update(self):
         self.rect.x += self.speedx  
         self.rect.y += self.speedy
-        self.pos.append([self.rect.certerx, self.rect.centery])
 
 
 class RAT(pygame.sprite.Sprite):
@@ -49,7 +47,7 @@ class RAT(pygame.sprite.Sprite):
         self.rect.y = random.randint(a, b)'''
 
 class BODY(pygame.sprite.Sprite):
-    def __init__(self, assets):
+    def __init__(self, assets, center):
 
         pygame.sprite.Sprite.__init__(self)
 
@@ -58,9 +56,7 @@ class BODY(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.speedx = 0
         self.speedy = 0
-        self.pos = []
+        self.rect.center = center
     
     def update(self):
-        self.rect.x += self.speedx  
-        self.rect.y += self.speedy
-        
+        pass        

@@ -3,6 +3,7 @@ import pygame
 from config import *
 from assets import *
 from eskelleton import *
+import time
 
 def pagina_jogo(WINDOW):
 #SPRITES
@@ -25,6 +26,7 @@ def pagina_jogo(WINDOW):
     rat = RAT(assets)
     all_sprites.add(rat)
     all_rats.add(rat)
+    all_bodies = pygame.sprite.Group()
 
     clock = pygame.time.Clock()
 
@@ -58,7 +60,14 @@ def pagina_jogo(WINDOW):
             state = GAMEOVER
             
         
+        c = player.rect.center
         all_sprites.update()  
+        if len(all_bodies) <= player.size:
+            b = BODY(assets, c)
+            all_sprites.add(b)
+            all_bodies.add(b)
+        else:
+            all_bodies.sprites()[0].kill()
 
         papa_rato = pygame.sprite.spritecollide(player, all_rats, True, pygame.sprite.collide_mask)
         
@@ -69,6 +78,7 @@ def pagina_jogo(WINDOW):
                 r = RAT(assets)
                 all_sprites.add(r)
                 all_rats.add(r)
+                player.size += 1
             
 
         WINDOW.fill(WHITE)  # Preenche com a cor branca
