@@ -4,10 +4,9 @@ from config import *
 from assets import *
 from eskelleton import *
 
-
 def pagina_jogo(WINDOW):
 #SPRITES
-
+    state = GAME
     assets = carrega_assets()
 
     all_sprites = pygame.sprite.Group()
@@ -41,16 +40,40 @@ def pagina_jogo(WINDOW):
                 if event.key == pygame.K_s:
                     state = QUIT
                     game = False
-                if event.key == pygame.K_LEFT:   #left
-                    player.speedx -= VEL            
-                if event.key == pygame.K_RIGHT: #right
+                if event.key == pygame.K_LEFT and player.speedx != VEL and player.speedx != -VEL:     #left
+                    player.speedx -= VEL     
+                    player.speedy = 0       
+                if event.key == pygame.K_RIGHT and player.speedx != -VEL and player.speedx != VEL:    #right
                     player.speedx += VEL
-                if event.key == pygame.K_UP:       #up
+                    player.speedy = 0   
+                if event.key == pygame.K_UP and player.speedy != VEL and player.speedy != -VEL:       #up
                     player.speedy -= VEL
-                if event.key == pygame.K_DOWN:     #down
+                    player.speedx = 0   
+                if event.key == pygame.K_DOWN and player.speedy != -VEL and player.speedy != VEL:     #down
                     player.speedy += VEL
+                    player.speedx = 0   
                     
-        all_sprites.update()   
+        if player.rect.x < 0 or player.rect.x > (WIDTH - COBRA_WIDTH) or player.rect.y < 0 or player.rect.y > (HEIGHT - COBRA_HEIGHT):
+            game = False
+            state = GAMEOVER
+            
+        for i in 
+        
+        all_sprites.update()  
+
+        papa_rato = pygame.sprite.spritecollide(player, all_rats, True, pygame.sprite.collide_mask)
+        
+        if len(papa_rato) > 0:
+            assets[NHAC_SOUND].play()
+            time.sleep(0.1)
+            for rato in papa_rato:
+                r = RAT(assets)
+                all_sprites.add(r)
+                all_rats.add(r)
+            
+
         WINDOW.fill(WHITE)  # Preenche com a cor branca
         all_sprites.draw(WINDOW)
         pygame.display.update()  # Mostra o novo frame para o jogador 
+    
+    return state

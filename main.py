@@ -4,8 +4,10 @@ from config import *
 from eskelleton import *
 from pag_inicial import *
 from pag_jogo import *
+from gameover import *
 
 pygame.init() 
+pygame.mixer.init()
 
 #especificacoes tela
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -35,9 +37,11 @@ def perdeu():
 state = INIT
 while state != QUIT:
     if state == INIT:
-        state = tela_inicial(WINDOW)
+        state = pagina_inicial(WINDOW)
     elif state == GAME:
         state = pagina_jogo(WINDOW)
+    elif state == GAMEOVER:
+        state == perdeu(WINDOW)
     else:
         state = QUIT
 
