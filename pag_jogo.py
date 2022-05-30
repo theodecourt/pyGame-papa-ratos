@@ -3,7 +3,6 @@ import pygame
 from config import *
 from assets import *
 from eskelleton import *
-import time
 
 def pagina_jogo(WINDOW):
 #SPRITES
