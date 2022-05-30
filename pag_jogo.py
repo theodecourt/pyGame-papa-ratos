@@ -53,12 +53,12 @@ def pagina_jogo(WINDOW):
                 if event.key == pygame.K_DOWN and player.speedy != -VEL and player.speedy != VEL:     #down
                     player.speedy += VEL
                     player.speedx = 0   
-                    
+
         if player.rect.x < 0 or player.rect.x > (WIDTH - COBRA_WIDTH) or player.rect.y < 0 or player.rect.y > (HEIGHT - COBRA_HEIGHT):
             game = False
             state = GAMEOVER
             
-
+        
         all_sprites.update()  
 
         papa_rato = pygame.sprite.spritecollide(player, all_rats, True, pygame.sprite.collide_mask)

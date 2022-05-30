@@ -17,6 +17,7 @@ class HEAD(pygame.sprite.Sprite):
         self.rect.centery = HEIGHT/2
         self.speedx = 0
         self.speedy = 0
+        
     
     def update(self):
         self.rect.x += self.speedx  
