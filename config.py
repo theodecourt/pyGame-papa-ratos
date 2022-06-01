@@ -7,7 +7,7 @@ BLACK = (0, 0, 0)
 GREEN = (107, 142, 35)
 BROWN = (139, 0, 0)
 
-FPS = 30
+FPS = 60
 VEL = 8
 
 #infos cobra
