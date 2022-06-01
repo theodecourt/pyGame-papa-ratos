@@ -21,10 +21,11 @@ def pagina_inicial(WINDOW):
                 if event.key == pygame.K_s:
                     state = QUIT
                     game = False
-            if event.type == pygame.KEYDOWN:
+            
                 if event.key == pygame.K_RETURN:
                     state = GAME
                     game = False
+                    
         text = font.render('COMEÇAR (ENTER)', True, (0, 0, 255))
         text2 = font.render('SAIR (S)', True, (0, 0, 255))
         WINDOW.fill(GREEN)

@@ -80,6 +80,7 @@ def pagina_jogo(WINDOW):
 
         papa_rato = pygame.sprite.spritecollide(player, all_rats, True, pygame.sprite.collide_mask)
         if len(papa_rato) > 0:
+            SCORE += 1
             assets[NHAC_SOUND].play()
             time.sleep(0.1)
             for rato in papa_rato:

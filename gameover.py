@@ -32,7 +32,7 @@ def perdeu(WINDOW):
         pygame.draw.polygon(WINDOW, BLACK, vertices)
         vertices = [(250, 250), (650, 250), (650, 350), (250, 350)]
         pygame.draw.polygon(WINDOW, BLACK, vertices)
-        WINDOW.blit(text_gameover, (350, 100))
+        WINDOW.blit(text_gameover, (300, 140))
         pygame.display.update()
     
     return state
