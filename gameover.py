@@ -2,14 +2,18 @@ import pygame
 from config import *
 from assets import *
 from eskelleton import *
+from pag_jogo import *
 
 def perdeu(WINDOW):
 
     #texto
     font = pygame.font.SysFont(None, 54)
     font2 = pygame.font.SysFont(None, 70)
+
+    
     clock = pygame.time.Clock()
-    #assets = carrega_assets()
+    assets = carrega_assets()
+    
     
     game = True
     while game:
@@ -21,8 +25,10 @@ def perdeu(WINDOW):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_s:
                     state = QUIT
+                    
                     game = False
-            if event.type == pygame.KEYDOWN:
+                    
+            
                 if event.key == pygame.K_RETURN:
                     state = GAME
                     game = False
@@ -33,6 +39,12 @@ def perdeu(WINDOW):
         vertices = [(250, 250), (650, 250), (650, 350), (250, 350)]
         pygame.draw.polygon(WINDOW, BLACK, vertices)
         WINDOW.blit(text_gameover, (300, 140))
+
+        texto_res = assets[SCORE_FONTE].render("Sua pontuacao for:  {}".format(placar), True, (BLACK))
+        text_rect = texto_res.get_rect()
+        text_rect.midtop = (WIDTH / 2,  10)
+        WINDOW.blit(texto_res, text_rect)
+        
         pygame.display.update()
     
     return state

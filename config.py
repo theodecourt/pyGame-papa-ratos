@@ -12,6 +12,8 @@ RED = (255, 0, 0)
 FPS = 60
 VEL = 6
 
+placar = 0
+
 #infos cobra
 COBRA_WIDTH, COBRA_HEIGHT = 30, 30
 RATO_WIDTH, RATO_HEIGHT = 40, 40
