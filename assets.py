@@ -56,5 +56,6 @@ def carrega_assets():
     assets[SCORE_FONTE] = pygame.font.Font(('assets/fontes/fonte_score.ttf'), 28)
     assets[GAMEOVER_FONTE] = pygame.font.Font(('assets/fontes/fonte_gameover.ttf'), 28)
     assets[TELAINICIAL_FONTE] = pygame.font.Font(('assets/fontes/fonte_telainicial.ttf'), 28)
+
     
     return assets

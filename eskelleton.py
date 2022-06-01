@@ -51,7 +51,7 @@ class RAT(pygame.sprite.Sprite):
 
 
 '''class WALLS(pygame.sprite.Sprite):
-    def __init__(self, assets):
+    def __init__(self, assets, posx, posy):
         
         pygame.sprite.Sprite.__init__(self)
 
@@ -75,4 +75,20 @@ class BODY(pygame.sprite.Sprite):
         self.neutro = neutro
     
     def update(self):
-        pass        
+        pass     
+
+class WALLS(pygame.sprite.Sprite):
+    def __init__(self, assets, posx, posy):
+        
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = assets['body']
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.left = posx
+        self.rect.top = posy
+    def update(self):
+        pass
+
+
+            

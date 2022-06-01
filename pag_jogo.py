@@ -5,6 +5,20 @@ from assets import *
 from eskelleton import *
 import time
 
+
+def cria_labirinto(assets, all_sprites):    
+    with open(f'assets/labirintos/labirinto1.csv', 'r') as arquivo:
+        fase_lines = arquivo.readlines()
+    all_walls = pygame.sprite.Group()
+    for l in range(len(fase_lines)):
+        for c in range(len(fase_lines[l])):
+            e = fase_lines[l][c]
+            if e == '1':
+                w = WALLS(assets, c*SIZE, l*SIZE)
+                all_walls.add(w)
+                all_sprites.add(w)
+    return all_walls
+
 def pagina_jogo(WINDOW):
 #SPRITES
     state = GAME
@@ -29,10 +43,12 @@ def pagina_jogo(WINDOW):
     groups['maze_walls'] = maze_walls
     groups['all_neutros'] = all_sprites
     
+    all_walls = cria_labirinto(assets, all_sprites)
 
     rat = RAT(assets)
     all_sprites.add(rat)
     all_rats.add(rat)
+
 
     clock = pygame.time.Clock()
 
@@ -99,8 +115,6 @@ def pagina_jogo(WINDOW):
                 placar = score
                 state = GAMEOVER
                 game = False
-
-
         
         WINDOW.fill(WHITE)  # Preenche com a cor branca
 
@@ -110,8 +124,6 @@ def pagina_jogo(WINDOW):
         text_rect = text_surface.get_rect()
         text_rect.midtop = (WIDTH / 2,  10)
         WINDOW.blit(text_surface, text_rect)
-
-        
 
         pygame.display.update()  # Mostra o novo frame para o jogador 
     

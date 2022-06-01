@@ -14,7 +14,7 @@ def perdeu(WINDOW):
     clock = pygame.time.Clock()
     assets = carrega_assets()
     
-    
+    state = GAMEOVER
     game = True
     while game:
         clock.tick(FPS)
@@ -46,5 +46,5 @@ def perdeu(WINDOW):
         WINDOW.blit(texto_res, text_rect)
         
         pygame.display.update()
-    
+
     return state

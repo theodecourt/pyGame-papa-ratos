@@ -24,5 +24,7 @@ GAME = 1
 GAMEOVER = 2
 QUIT = 3
 
+SIZE = 10
+
 #ajustes sons
 
