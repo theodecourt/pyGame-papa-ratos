@@ -60,7 +60,7 @@ def pagina_jogo(WINDOW):
 
         if player.rect.x < 0 or player.rect.x > (WIDTH - COBRA_WIDTH) or player.rect.y < 0 or player.rect.y > (HEIGHT - COBRA_HEIGHT):
             game = False
-            state = GAMEOVER
+            state = INIT
             
         
         c = player.rect.center
@@ -80,7 +80,6 @@ def pagina_jogo(WINDOW):
 
         papa_rato = pygame.sprite.spritecollide(player, all_rats, True, pygame.sprite.collide_mask)
         if len(papa_rato) > 0:
-            SCORE += 1
             assets[NHAC_SOUND].play()
             time.sleep(0.1)
             for rato in papa_rato:
@@ -92,7 +91,7 @@ def pagina_jogo(WINDOW):
         se_comeu = pygame.sprite.spritecollide(player, all_bodies, False, pygame.sprite.collide_mask)
         for body in se_comeu:
             if not body.neutro:
-                state = GAMEOVER
+                state = INIT
                 game = False
 
         WINDOW.fill(WHITE)  # Preenche com a cor branca
