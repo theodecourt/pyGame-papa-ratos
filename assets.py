@@ -25,6 +25,11 @@ EW_SOUND = 'throwingup_sound'
 BATIDA_SOUND = 'batida_sound'
 DIE_SOUND = 'die_sound'
 
+#fontes
+SCORE_FONTE = 'score_fonte'
+GAMEOVER_FONTE = 'gameover_fonte'
+TELAINICIAL_FONTE = 'telainicial_fonte'
+
 
 def carrega_assets():
     assets = {}
@@ -47,4 +52,9 @@ def carrega_assets():
     #assets[BATIDA_SOUND] = pygame.mixer.Sound('assets/snd/pew.wav')
     #assets[DIE_SOUND] = pygame.mixer.Sound('assets/snd/pew.wav')
 
+    #carrega as fontes do jogo
+    assets[SCORE_FONTE] = pygame.font.Font(('assets/fontes/fonte_score.ttf'), 28)
+    assets[GAMEOVER_FONTE] = pygame.font.Font(('assets/fontes/fonte_gameover.ttf'), 28)
+    assets[TELAINICIAL_FONTE] = pygame.font.Font(('assets/fontes/fonte_telainicial.ttf'), 28)
+    
     return assets

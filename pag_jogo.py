@@ -94,6 +94,11 @@ def pagina_jogo(WINDOW):
                 state = INIT
                 game = False
 
+        text_surface = assets['SCORE_FONTE'].render("{:08d}".format(10), True, (255, 255, 0))
+        text_rect = text_surface.get_rect()
+        text_rect.midtop = (WIDTH / 2,  10)
+        WINDOW.blit(text_surface, text_rect)
+        
         WINDOW.fill(WHITE)  # Preenche com a cor branca
         all_sprites.draw(WINDOW)
         pygame.display.update()  # Mostra o novo frame para o jogador 
