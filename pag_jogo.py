@@ -16,17 +16,20 @@ def pagina_jogo(WINDOW):
     #body = pygame.sprite.Group()
     all_rats = pygame.sprite.Group()
     maze_walls = pygame.sprite.Group()
+    all_bodies = pygame.sprite.Group()
+    
 
     groups = {}
     groups['all_sprites'] = all_sprites
-    groups['body'] = all_sprites
+    groups['all_bodies'] = all_sprites
     groups['all_rats'] = all_rats
     groups['maze_walls'] = maze_walls
+    groups['all_neutros'] = all_sprites
+    
 
     rat = RAT(assets)
     all_sprites.add(rat)
     all_rats.add(rat)
-    all_bodies = pygame.sprite.Group()
 
     clock = pygame.time.Clock()
 
@@ -35,10 +38,10 @@ def pagina_jogo(WINDOW):
         clock.tick(FPS)
         # ----- Trata eventos
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT:
                     state = QUIT
                     game = False
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_s:
                     state = QUIT
                     game = False
@@ -62,15 +65,20 @@ def pagina_jogo(WINDOW):
         
         c = player.rect.center
         all_sprites.update()  
-        if len(all_bodies) <= player.size:
+        
+        if len(all_bodies) < player.size:
             b = BODY(assets, c)
             all_sprites.add(b)
             all_bodies.add(b)
+        elif len(all_bodies) == 0:
+            pass
         else:
             all_bodies.sprites()[0].kill()
+        for i in range(len(all_bodies)-5):
+            all_bodies.sprites()[i].neutro = False
+
 
         papa_rato = pygame.sprite.spritecollide(player, all_rats, True, pygame.sprite.collide_mask)
-        
         if len(papa_rato) > 0:
             assets[NHAC_SOUND].play()
             time.sleep(0.1)
@@ -79,7 +87,12 @@ def pagina_jogo(WINDOW):
                 all_sprites.add(r)
                 all_rats.add(r)
                 player.size += 1
-            
+        
+        se_comeu = pygame.sprite.spritecollide(player, all_bodies, False, pygame.sprite.collide_mask)
+        for body in se_comeu:
+            if not body.neutro:
+                state = GAMEOVER
+                game = False
 
         WINDOW.fill(WHITE)  # Preenche com a cor branca
         all_sprites.draw(WINDOW)

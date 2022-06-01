@@ -6,9 +6,11 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GREEN = (107, 142, 35)
 BROWN = (139, 0, 0)
+RED = (255, 0, 0)
+
 
 FPS = 60
-VEL = 8
+VEL = 6
 
 #infos cobra
 COBRA_WIDTH, COBRA_HEIGHT = 30, 30

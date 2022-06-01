@@ -22,6 +22,21 @@ class HEAD(pygame.sprite.Sprite):
         self.rect.x += self.speedx  
         self.rect.y += self.speedy
 
+'''class NEUTRO(pygame.sprite.Sprite):
+    def __init__(self, assets, center):
+
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = assets[HEAD_IMG]
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.speedx = 0
+        self.speedy = 0
+        self.rect.center = center
+    
+    def update(self):
+        pass        '''
+
 
 class RAT(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -47,7 +62,7 @@ class RAT(pygame.sprite.Sprite):
         self.rect.y = random.randint(a, b)'''
 
 class BODY(pygame.sprite.Sprite):
-    def __init__(self, assets, center):
+    def __init__(self, assets, center, neutro=True):
 
         pygame.sprite.Sprite.__init__(self)
 
@@ -57,6 +72,7 @@ class BODY(pygame.sprite.Sprite):
         self.speedx = 0
         self.speedy = 0
         self.rect.center = center
+        self.neutro = neutro
     
     def update(self):
         pass        
