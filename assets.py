@@ -14,6 +14,7 @@ HEAD_IMG = 'cabeca'
 NEUTRO_IMG = 'neutro'
 BODY_IMG = 'body'
 RAT_IMG = 'rato'
+WALL_IMG = 'parede'
 
 
 #animacoes
@@ -34,14 +35,16 @@ TELAINICIAL_FONTE = 'telainicial_fonte'
 def carrega_assets():
     assets = {}
     #assets[CENARIO] = pygame.image.load(os.path.join(IMG_DIR, 'cenario.png')).convert()
-    assets[HEAD_IMG] = pygame.image.load('assets/imagens/roxooficial.png').convert_alpha()
+    assets[HEAD_IMG] = pygame.image.load('assets/imagens/verde.png').convert_alpha()
     assets[HEAD_IMG] = pygame.transform.scale(assets[HEAD_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
-    assets[NEUTRO_IMG] = pygame.image.load('assets/imagens/roxooficial.png').convert_alpha()
+    assets[NEUTRO_IMG] = pygame.image.load('assets/imagens/verde.png').convert_alpha()
     assets[NEUTRO_IMG] = pygame.transform.scale(assets[HEAD_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
-    assets[BODY_IMG] = pygame.image.load('assets/imagens/roxooficial.png').convert_alpha()
+    assets[BODY_IMG] = pygame.image.load('assets/imagens/verde.png').convert_alpha()
     assets[BODY_IMG] = pygame.transform.scale(assets[BODY_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
     assets[RAT_IMG] = pygame.image.load('assets/imagens/rato.png').convert_alpha()
     assets[RAT_IMG] = pygame.transform.scale(assets[RAT_IMG], (RATO_WIDTH, RATO_HEIGHT))
+    assets[WALL_IMG] = pygame.image.load('assets/imagens/roxooficial.png').convert_alpha()
+    assets[WALL_IMG] = pygame.transform.scale(assets[WALL_IMG], (SIZE, SIZE))
 
 
     # Carrega os sons do jogo
