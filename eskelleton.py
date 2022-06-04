@@ -49,18 +49,6 @@ class RAT(pygame.sprite.Sprite):
         self.rect.x = random.randint(0, WIDTH-RATO_WIDTH)
         self.rect.y = random.randint(0, HEIGHT-RATO_HEIGHT)
 
-
-'''class WALLS(pygame.sprite.Sprite):
-    def __init__(self, assets):
-        
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = assets['xxx']
-        self.mask = pygame.mask.from_surface(self.image)
-        self.rect = self.image.get_rect()
-        self.rect.x = random.randint(a, b)
-        self.rect.y = random.randint(a, b)'''
-
 class BODY(pygame.sprite.Sprite):
     def __init__(self, assets, center, neutro=True):
 
@@ -76,3 +64,15 @@ class BODY(pygame.sprite.Sprite):
     
     def update(self):
         pass        
+
+
+with open(f'assets/mapa.csv', 'r') as arquivo:
+    fase_lines = arquivo.readlines()
+    separator = ','
+    matriz_fase = []
+    for linha in fase_lines:
+        linha = linha.strip()
+        linha = linha.split(separator)
+        for i, block in enumerate(linha):
+            linha[i] = block
+            matriz_fase.append(linha)

@@ -14,6 +14,7 @@ HEAD_IMG = 'cabeca'
 NEUTRO_IMG = 'neutro'
 BODY_IMG = 'body'
 RAT_IMG = 'rato'
+DEAD_IMG = 'cobramorta'
 
 
 #animacoes
@@ -26,6 +27,8 @@ BATIDA_SOUND = 'batida_sound'
 DIE_SOUND = 'die_sound'
 
 
+
+
 def carrega_assets():
     assets = {}
     #assets[CENARIO] = pygame.image.load(os.path.join(IMG_DIR, 'cenario.png')).convert()
@@ -35,6 +38,8 @@ def carrega_assets():
     assets[NEUTRO_IMG] = pygame.transform.scale(assets[HEAD_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
     assets[BODY_IMG] = pygame.image.load('assets/imagens/roxooficial.png').convert_alpha()
     assets[BODY_IMG] = pygame.transform.scale(assets[BODY_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
+    assets[DEAD_IMG] = pygame.image.load('assets/imagens/cobramortapng.png').convert_alpha()
+    assets[DEAD_IMG] = pygame.transform.scale(assets[DEAD_IMG], (300, 300))
     assets[RAT_IMG] = pygame.image.load('assets/imagens/rato.png').convert_alpha()
     assets[RAT_IMG] = pygame.transform.scale(assets[RAT_IMG], (RATO_WIDTH, RATO_HEIGHT))
 
@@ -46,5 +51,8 @@ def carrega_assets():
     #assets[EW_SOUND] = pygame.mixer.Sound('assets/snd/expl6.wav')
     #assets[BATIDA_SOUND] = pygame.mixer.Sound('assets/snd/pew.wav')
     #assets[DIE_SOUND] = pygame.mixer.Sound('assets/snd/pew.wav')
+
+    #carrega as fontes do jogo 
+    assets[SCORE_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
 
     return assets
