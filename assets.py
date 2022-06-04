@@ -32,6 +32,8 @@ GAMEOVER_FONTE = 'gameover_fonte'
 TELAINICIAL_FONTE = 'telainicial_fonte'
 
 
+
+
 def carrega_assets():
     assets = {}
     #assets[CENARIO] = pygame.image.load(os.path.join(IMG_DIR, 'cenario.png')).convert()
@@ -41,6 +43,8 @@ def carrega_assets():
     assets[NEUTRO_IMG] = pygame.transform.scale(assets[HEAD_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
     assets[BODY_IMG] = pygame.image.load('assets/imagens/verde.png').convert_alpha()
     assets[BODY_IMG] = pygame.transform.scale(assets[BODY_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
+    assets[DEAD_IMG] = pygame.image.load('assets/imagens/cobramortapng.png').convert_alpha()
+    assets[DEAD_IMG] = pygame.transform.scale(assets[DEAD_IMG], (300, 300))
     assets[RAT_IMG] = pygame.image.load('assets/imagens/rato.png').convert_alpha()
     assets[RAT_IMG] = pygame.transform.scale(assets[RAT_IMG], (RATO_WIDTH, RATO_HEIGHT))
     assets[WALL_IMG] = pygame.image.load('assets/imagens/roxooficial.png').convert_alpha()
