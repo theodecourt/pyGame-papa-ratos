@@ -5,6 +5,20 @@ from assets import *
 from eskelleton import *
 import time
 
+
+def cria_labirinto(assets, all_sprites):    
+    with open(f'assets/labirintos/labirinto1.csv', 'r') as arquivo:
+        fase_lines = arquivo.readlines()
+    all_walls = pygame.sprite.Group()
+    for l in range(len(fase_lines)):
+        for c in range(len(fase_lines[l])):
+            e = fase_lines[l][c]
+            if e == '1':
+                w = WALLS(assets, c*SIZE, l*SIZE)
+                all_walls.add(w)
+                all_sprites.add(w)
+    return all_walls
+
 def pagina_jogo(WINDOW):
 #SPRITES
     state = GAME
@@ -18,6 +32,9 @@ def pagina_jogo(WINDOW):
     maze_walls = pygame.sprite.Group()
     all_bodies = pygame.sprite.Group()
     
+    font = pygame.font.Font(None, 60)
+
+    score = 0 
 
     groups = {}
     groups['all_sprites'] = all_sprites
@@ -26,10 +43,12 @@ def pagina_jogo(WINDOW):
     groups['maze_walls'] = maze_walls
     groups['all_neutros'] = all_sprites
     
+    all_walls = cria_labirinto(assets, all_sprites)
 
     rat = RAT(assets)
     all_sprites.add(rat)
     all_rats.add(rat)
+
 
     clock = pygame.time.Clock()
 
@@ -59,8 +78,9 @@ def pagina_jogo(WINDOW):
                     player.speedx = 0   
 
         if player.rect.x < 0 or player.rect.x > (WIDTH - COBRA_WIDTH) or player.rect.y < 0 or player.rect.y > (HEIGHT - COBRA_HEIGHT):
+            placar = score
             game = False
-            state = INIT
+            state = GAMEOVER
             
         
         c = player.rect.center
@@ -87,15 +107,24 @@ def pagina_jogo(WINDOW):
                 all_sprites.add(r)
                 all_rats.add(r)
                 player.size += 1
+                score += 1
         
         se_comeu = pygame.sprite.spritecollide(player, all_bodies, False, pygame.sprite.collide_mask)
         for body in se_comeu:
             if not body.neutro:
-                state = INIT
+                placar = score
+                state = GAMEOVER
                 game = False
-
+        
         WINDOW.fill(WHITE)  # Preenche com a cor branca
+
         all_sprites.draw(WINDOW)
+
+        text_surface = assets[SCORE_FONTE].render("RATOS PAPADOS:  {}".format(score), True, (RED))
+        text_rect = text_surface.get_rect()
+        text_rect.midtop = (WIDTH / 2,  10)
+        WINDOW.blit(text_surface, text_rect)
+
         pygame.display.update()  # Mostra o novo frame para o jogador 
     
     return state

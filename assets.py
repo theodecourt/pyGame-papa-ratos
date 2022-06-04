@@ -14,7 +14,7 @@ HEAD_IMG = 'cabeca'
 NEUTRO_IMG = 'neutro'
 BODY_IMG = 'body'
 RAT_IMG = 'rato'
-DEAD_IMG = 'cobramorta'
+WALL_IMG = 'parede'
 
 
 #animacoes
@@ -26,22 +26,29 @@ EW_SOUND = 'throwingup_sound'
 BATIDA_SOUND = 'batida_sound'
 DIE_SOUND = 'die_sound'
 
+#fontes
+SCORE_FONTE = 'score_fonte'
+GAMEOVER_FONTE = 'gameover_fonte'
+TELAINICIAL_FONTE = 'telainicial_fonte'
+
 
 
 
 def carrega_assets():
     assets = {}
     #assets[CENARIO] = pygame.image.load(os.path.join(IMG_DIR, 'cenario.png')).convert()
-    assets[HEAD_IMG] = pygame.image.load('assets/imagens/roxooficial.png').convert_alpha()
+    assets[HEAD_IMG] = pygame.image.load('assets/imagens/verde.png').convert_alpha()
     assets[HEAD_IMG] = pygame.transform.scale(assets[HEAD_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
-    assets[NEUTRO_IMG] = pygame.image.load('assets/imagens/roxooficial.png').convert_alpha()
+    assets[NEUTRO_IMG] = pygame.image.load('assets/imagens/verde.png').convert_alpha()
     assets[NEUTRO_IMG] = pygame.transform.scale(assets[HEAD_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
-    assets[BODY_IMG] = pygame.image.load('assets/imagens/roxooficial.png').convert_alpha()
+    assets[BODY_IMG] = pygame.image.load('assets/imagens/verde.png').convert_alpha()
     assets[BODY_IMG] = pygame.transform.scale(assets[BODY_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
     assets[DEAD_IMG] = pygame.image.load('assets/imagens/cobramortapng.png').convert_alpha()
     assets[DEAD_IMG] = pygame.transform.scale(assets[DEAD_IMG], (300, 300))
     assets[RAT_IMG] = pygame.image.load('assets/imagens/rato.png').convert_alpha()
     assets[RAT_IMG] = pygame.transform.scale(assets[RAT_IMG], (RATO_WIDTH, RATO_HEIGHT))
+    assets[WALL_IMG] = pygame.image.load('assets/imagens/roxooficial.png').convert_alpha()
+    assets[WALL_IMG] = pygame.transform.scale(assets[WALL_IMG], (SIZE, SIZE))
 
 
     # Carrega os sons do jogo
@@ -52,7 +59,10 @@ def carrega_assets():
     #assets[BATIDA_SOUND] = pygame.mixer.Sound('assets/snd/pew.wav')
     #assets[DIE_SOUND] = pygame.mixer.Sound('assets/snd/pew.wav')
 
-    #carrega as fontes do jogo 
-    assets[SCORE_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
+    #carrega as fontes do jogo
+    assets[SCORE_FONTE] = pygame.font.Font(('assets/fontes/fonte_score.ttf'), 28)
+    assets[GAMEOVER_FONTE] = pygame.font.Font(('assets/fontes/fonte_gameover.ttf'), 28)
+    assets[TELAINICIAL_FONTE] = pygame.font.Font(('assets/fontes/fonte_telainicial.ttf'), 28)
 
+    
     return assets
