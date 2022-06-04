@@ -108,7 +108,8 @@ def pagina_jogo(WINDOW):
                 all_rats.add(r)
                 player.size += 1
                 score += 1
-        
+
+
         se_comeu = pygame.sprite.spritecollide(player, all_bodies, False, pygame.sprite.collide_mask)
         for body in se_comeu:
             if not body.neutro:

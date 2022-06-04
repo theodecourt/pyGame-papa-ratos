@@ -32,7 +32,7 @@ def perdeu(WINDOW):
                 if event.key == pygame.K_RETURN:
                     state = GAME
                     game = False
-        text_gameover = font2.render('GAMEOVER', True, (0, 0, 255))
+        text_gameover = assets[GAMEOVER_FONTE].render('GAMEOVER', True, (0, 0, 255))
         WINDOW.fill(RED)
         vertices = [(250, 100), (650, 100), (650, 200), (250, 200)]
         pygame.draw.polygon(WINDOW, BLACK, vertices)
@@ -40,7 +40,7 @@ def perdeu(WINDOW):
         pygame.draw.polygon(WINDOW, BLACK, vertices)
         WINDOW.blit(text_gameover, (300, 140))
 
-        texto_res = assets[SCORE_FONTE].render("Sua pontuacao for:  {}".format(placar), True, (BLACK))
+        texto_res = assets[SCORE_FONTE].render("VOCE PAPOU {} RATOS!".format(placar), True, (BLACK))
         text_rect = texto_res.get_rect()
         text_rect.midtop = (WIDTH / 2,  10)
         WINDOW.blit(texto_res, text_rect)
