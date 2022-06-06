@@ -15,6 +15,7 @@ NEUTRO_IMG = 'neutro'
 BODY_IMG = 'body'
 RAT_IMG = 'rato'
 WALL_IMG = 'parede'
+explosao_animacao = 'explosao_animacao'
 
 
 #animacoes
@@ -32,8 +33,6 @@ GAMEOVER_FONTE = 'gameover_fonte'
 TELAINICIAL_FONTE = 'telainicial_fonte'
 
 
-
-
 def carrega_assets():
     assets = {}
     #assets[CENARIO] = pygame.image.load(os.path.join(IMG_DIR, 'cenario.png')).convert()
@@ -43,14 +42,24 @@ def carrega_assets():
     assets[NEUTRO_IMG] = pygame.transform.scale(assets[HEAD_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
     assets[BODY_IMG] = pygame.image.load('assets/imagens/verde.png').convert_alpha()
     assets[BODY_IMG] = pygame.transform.scale(assets[BODY_IMG], (COBRA_WIDTH, COBRA_HEIGHT))
-    assets[DEAD_IMG] = pygame.image.load('assets/imagens/cobramortapng.png').convert_alpha()
-    assets[DEAD_IMG] = pygame.transform.scale(assets[DEAD_IMG], (300, 300))
+    #assets[DEAD_IMG] = pygame.image.load('assets/imagens/cobramortapng.png').convert_alpha()
+    #assets[DEAD_IMG] = pygame.transform.scale(assets[DEAD_IMG], (300, 300))
     assets[RAT_IMG] = pygame.image.load('assets/imagens/rato.png').convert_alpha()
     assets[RAT_IMG] = pygame.transform.scale(assets[RAT_IMG], (RATO_WIDTH, RATO_HEIGHT))
-    assets[WALL_IMG] = pygame.image.load('assets/imagens/roxooficial.png').convert_alpha()
+    assets[WALL_IMG] = pygame.image.load('assets/imagens/parede.png').convert_alpha()
+    assets[WALL_IMG] = pygame.transform.scale(assets[WALL_IMG], (SIZE, SIZE))
+    assets[WALL_IMG] = pygame.image.load('assets/imagens/parede.png').convert_alpha()
     assets[WALL_IMG] = pygame.transform.scale(assets[WALL_IMG], (SIZE, SIZE))
 
+    lista_animacao = []
+    for imagem in range(9):
+        filename = pygame.image.load('assets/imagens/cobrabateu0.png').convert_alpha()
 
+        img = pygame.transform.scale(filename, (imagem*100, imagem*100))
+        lista_animacao.append(img)
+    
+    assets[explosao_animacao] = lista_animacao
+    
     # Carrega os sons do jogo
     #pygame.mixer.music.load('assets/sons/tgfcoder-FrozenJam-SeamlessLoop.ogg')
     #pygame.mixer.music.set_volume(0.4)

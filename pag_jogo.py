@@ -5,14 +5,16 @@ from assets import *
 from eskelleton import *
 import time
 
-
-def cria_labirinto(assets, all_sprites):    
-    with open(f'assets/labirintos/labirinto1.csv', 'r') as arquivo:
+def le_mapa():
+    with open(f'assets/labirintos/labirinto2.csv', 'r') as arquivo:
         fase_lines = arquivo.readlines()
+    return fase_lines
+
+def cria_labirinto(assets, mapa, all_sprites):    
     all_walls = pygame.sprite.Group()
-    for l in range(len(fase_lines)):
-        for c in range(len(fase_lines[l])):
-            e = fase_lines[l][c]
+    for l in range(len(mapa)):
+        for c in range(len(mapa[l])):
+            e = mapa[l][c]
             if e == '1':
                 w = WALLS(assets, c*SIZE, l*SIZE)
                 all_walls.add(w)
@@ -42,10 +44,16 @@ def pagina_jogo(WINDOW):
     groups['all_rats'] = all_rats
     groups['maze_walls'] = maze_walls
     groups['all_neutros'] = all_sprites
-    
-    all_walls = cria_labirinto(assets, all_sprites)
 
-    rat = RAT(assets)
+    mapa = le_mapa()    
+    all_walls = cria_labirinto(assets, mapa, all_sprites)
+
+    elemento = '1'
+    while elemento != " ":
+        l = random.randint(0, len(mapa) - 1)
+        c = random.randint(0, len(mapa[l]) - 1)
+        elemento = mapa[l][c]
+    rat = RAT(assets, c*SIZE, l*SIZE)
     all_sprites.add(rat)
     all_rats.add(rat)
 
@@ -79,6 +87,8 @@ def pagina_jogo(WINDOW):
 
         if player.rect.x < 0 or player.rect.x > (WIDTH - COBRA_WIDTH) or player.rect.y < 0 or player.rect.y > (HEIGHT - COBRA_HEIGHT):
             placar = score
+            exp = Explosao(player.rect.center, assets)
+            all_sprites.add(exp)
             game = False
             state = GAMEOVER
             
@@ -94,7 +104,7 @@ def pagina_jogo(WINDOW):
             pass
         else:
             all_bodies.sprites()[0].kill()
-        for i in range(len(all_bodies)-5):
+        for i in range(len(all_bodies)-15):
             all_bodies.sprites()[i].neutro = False
 
 
@@ -103,9 +113,15 @@ def pagina_jogo(WINDOW):
             assets[NHAC_SOUND].play()
             time.sleep(0.1)
             for rato in papa_rato:
-                r = RAT(assets)
+                elemento = '1'
+                while elemento != " ":
+                    l = random.randint(1, len(mapa) - 2)
+                    c = random.randint(1, len(mapa[l]) - 2)
+                    elemento = mapa[l][c]
+                r = RAT(assets, c*SIZE, l*SIZE)
                 all_sprites.add(r)
                 all_rats.add(r)
+
                 player.size += 1
                 score += 1
 
@@ -114,14 +130,28 @@ def pagina_jogo(WINDOW):
         for body in se_comeu:
             if not body.neutro:
                 placar = score
+                exp = Explosao(player.rect.center, assets)
+                all_sprites.add(exp)
                 state = GAMEOVER
                 game = False
+                
+        bateu_parede = pygame.sprite.spritecollide(player, all_walls, False, pygame.sprite.collide_mask)
+        if player.state == 1 and len(bateu_parede) > 0:
+            player.state = 2
+            exp = Explosao(player.rect.center, assets)
+            all_sprites.add(exp)
+
+        if player.state == 9:
+            state = GAMEOVER
+            game = False
+
+        #vou tentar implementar o recorde
         
-        WINDOW.fill(WHITE)  # Preenche com a cor branca
+        WINDOW.fill(BLUE)  # Preenche com a cor azul
 
         all_sprites.draw(WINDOW)
 
-        text_surface = assets[SCORE_FONTE].render("RATOS PAPADOS:  {}".format(score), True, (RED))
+        text_surface = assets[SCORE_FONTE].render("RATOS PAPADOS:  {} ".format(score), True, (BLACK))
         text_rect = text_surface.get_rect()
         text_rect.midtop = (WIDTH / 2,  10)
         WINDOW.blit(text_surface, text_rect)
