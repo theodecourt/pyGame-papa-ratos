@@ -1,3 +1,4 @@
+from turtle import reset
 import pygame
 from config import *
 from assets import *
@@ -36,16 +37,16 @@ def perdeu(WINDOW):
         text_playagain = assets[TELAINICIAL_FONTE].render("PLAY AGAIN (PRESS ENTER)", True, (BLACK)) #VER SE PCS DO PARENTESES
         text_sair = assets[TELAINICIAL_FONTE].render("QUIT (PRESS S)", True, (BLACK)) #VER SE PCS DO PARENTESES
         WINDOW.fill(RED)
-        vertices = [(250, 100), (500, 100), (500, 200), (250, 200)]
+        vertices = [(250, 100), (750, 100), (750, 200), (250, 200)]
         pygame.draw.polygon(WINDOW, WHITE, vertices)
-        vertices = [(250, 250), (650, 250), (650, 350), (250, 350)]
+        vertices = [(250, 250), (750, 250), (750, 350), (250, 350)]
         pygame.draw.polygon(WINDOW, WHITE, vertices)
-        WINDOW.blit(text_gameover, (300, 50))
+        WINDOW.blit(text_gameover, (WIDTH/2, 50))
         WINDOW.blit(text_playagain, (300, 150))
         WINDOW.blit(text_sair, (300, 300))
 
 
-        texto_res = assets[SCORE_FONTE].render("VOCE PAPOU {} RATOS!".format(placar), True, (BLACK))
+        texto_res = assets[SCORE_FONTE].render("VOCE PAPOU {} RATOS!".format(0), True, (BLACK))
         text_rect = texto_res.get_rect()
         text_rect.midtop = (WIDTH / 2,  10)
         WINDOW.blit(texto_res, text_rect)

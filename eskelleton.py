@@ -1,3 +1,4 @@
+from cgi import print_form
 import pygame
 import random
 from config import *
@@ -8,7 +9,7 @@ class HEAD(pygame.sprite.Sprite):
     def __init__(self, assets):
         
         pygame.sprite.Sprite.__init__(self)
-        self.images = assets[explosao_animacao]
+        self.images = assets[DEAD_IMG]
         self.image = assets[HEAD_IMG]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
@@ -24,14 +25,14 @@ class HEAD(pygame.sprite.Sprite):
         if self.state == 1:
             self.rect.x += self.speedx  
             self.rect.y += self.speedy
-        if self.state == 2:
-            c = self.rect.center
-            self.image = self.images[self.index_image]
-            self.rect = self.image.get_rect()
-            self.rect.center = c
-            self.index_image += 1
-            if self.index_image == len(self.images):
-                self.state = 9
+        # if self.state == 2:
+        #     c = self.rect.center
+        #     self.image = self.images[self.index_image]
+        #     self.rect = self.image.get_rect()
+        #     self.rect.center = c
+        #     self.index_image += 1
+        #     if self.index_image == len(self.images):
+        #         self.state = 9
 
 
 '''class NEUTRO(pygame.sprite.Sprite):
@@ -70,23 +71,13 @@ class RAT(pygame.sprite.Sprite):
         pass
 
 
-'''class WALLS(pygame.sprite.Sprite):
-    def __init__(self, assets, posx, posy):
-        
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = assets['xxx']
-        self.mask = pygame.mask.from_surface(self.image)
-        self.rect = self.image.get_rect()
-        self.rect.x = random.randint(a, b)
-        self.rect.y = random.randint(a, b)'''
 
 class BODY(pygame.sprite.Sprite):
     def __init__(self, assets, center, neutro=True):
 
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = assets[HEAD_IMG]
+        self.image = assets[BODY_IMG]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.speedx = 0
@@ -111,44 +102,44 @@ class WALLS(pygame.sprite.Sprite):
         pass
 
 
-class Explosao(pygame.sprite.Sprite):
+class Gameover(pygame.sprite.Sprite):
     # Construtor da classe.
-    def __init__(self, center, assets):
+    def __init__(self, center, player, assets):
+        print("esse", center)
+
         pygame.sprite.Sprite.__init__(self)
 
-
-        self.animacao_explosao = assets[explosao_animacao]
-
-
+        self.animacao_morte = assets[DEAD_IMG]
+        
         self.frame = 0
-        self.image = self.animacao_explosao[self.frame] 
+        self.image = self.animacao_morte[self.frame] 
         self.rect = self.image.get_rect()
-        self.rect.center = center  
+        self.rect.center = center
 
         self.last_update = pygame.time.get_ticks()
         self.frame_ticks = 50
+        self.player = player
+        
 
-        def update(self):
+    def update(self):
+        print("rect", self.rect)
 
-            agora = pygame.time.get_ticks()
+        agora = pygame.time.get_ticks()
 
-            quantos_ticks_passaram = agora - self.last_update
+        quantos_ticks_passaram = agora - self.last_update
 
-            # Se já está na hora de mudar de imagem...
-            if quantos_ticks_passaram > self.frame_ticks:
-                # Marca o tick da nova imagem.
-                self.last_update = agora
+        if quantos_ticks_passaram > self.frame_ticks:
+            
+            self.last_update = agora
+            self.frame += 1
+            print('frame', self.frame)
+            if self.frame == len(self.animacao_morte):
+                self.player.state = 9
+                self.kill()
 
-                # Avança um quadro.
-                self.frame += 1
-
-                # Verifica se já chegou no final da animação.
-                if self.frame == len(self.animacao_explosao):
-                    # Se sim, tchau explosão!
-                    self.kill()
-                else:
-                    # Se ainda não chegou ao fim da explosão, troca de imagem.
-                    center = self.rect.center
-                    self.image = self.animacao_explosao[self.frame]
-                    self.rect = self.image.get_rect()
-                    self.rect.center = center
+            else:
+                center = self.rect.center
+                self.image = self.animacao_morte[self.frame]
+                self.rect = self.image.get_rect()
+                self.rect.center = center
+                print("aqui", center)

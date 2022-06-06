@@ -1,4 +1,3 @@
-from re import S
 import pygame
 from config import *
 from assets import *
@@ -49,7 +48,7 @@ def pagina_jogo(WINDOW):
     all_walls = cria_labirinto(assets, mapa, all_sprites)
 
     elemento = '1'
-    while elemento != " ":
+    while elemento != "9":
         l = random.randint(0, len(mapa) - 1)
         c = random.randint(0, len(mapa[l]) - 1)
         elemento = mapa[l][c]
@@ -59,9 +58,12 @@ def pagina_jogo(WINDOW):
 
 
     clock = pygame.time.Clock()
+    VEL = 2
+
 
     game = True
     while game:
+        placar = score
         clock.tick(FPS)
         # ----- Trata eventos
         for event in pygame.event.get():
@@ -85,12 +87,14 @@ def pagina_jogo(WINDOW):
                     player.speedy += VEL
                     player.speedx = 0   
 
-        if player.rect.x < 0 or player.rect.x > (WIDTH - COBRA_WIDTH) or player.rect.y < 0 or player.rect.y > (HEIGHT - COBRA_HEIGHT):
-            placar = score
-            exp = Explosao(player.rect.center, assets)
-            all_sprites.add(exp)
-            game = False
-            state = GAMEOVER
+
+        # if player.rect.x < 0 or player.rect.x > (WIDTH - COBRA_WIDTH) or player.rect.y < 0 or player.rect.y > (HEIGHT - COBRA_HEIGHT):
+        #     placar = score
+        #     print(3)
+        #     exp = Gameover(player.rect.center, assets)
+        #     all_sprites.add(exp)
+        #     game = False
+        #     state = GAMEOVER
             
         
         c = player.rect.center
@@ -111,12 +115,11 @@ def pagina_jogo(WINDOW):
         papa_rato = pygame.sprite.spritecollide(player, all_rats, True, pygame.sprite.collide_mask)
         if len(papa_rato) > 0:
             assets[NHAC_SOUND].play()
-            time.sleep(0.1)
             for rato in papa_rato:
                 elemento = '1'
-                while elemento != " ":
-                    l = random.randint(1, len(mapa) - 2)
-                    c = random.randint(1, len(mapa[l]) - 2)
+                while elemento != "9":
+                    l = random.randint(0, len(mapa) - 1)
+                    c = random.randint(0, len(mapa[l]) - 1)
                     elemento = mapa[l][c]
                 r = RAT(assets, c*SIZE, l*SIZE)
                 all_sprites.add(r)
@@ -125,23 +128,34 @@ def pagina_jogo(WINDOW):
                 player.size += 1
                 score += 1
 
+                if score%5 == 0:
+                    VEL += 0.2
 
+                
+                    
         se_comeu = pygame.sprite.spritecollide(player, all_bodies, False, pygame.sprite.collide_mask)
         for body in se_comeu:
             if not body.neutro:
                 placar = score
-                exp = Explosao(player.rect.center, assets)
+                WINDOW.fill(BLUE)
+                print(2)
+                exp = Gameover(CENTER, player, assets)
                 all_sprites.add(exp)
                 state = GAMEOVER
                 game = False
                 
         bateu_parede = pygame.sprite.spritecollide(player, all_walls, False, pygame.sprite.collide_mask)
         if player.state == 1 and len(bateu_parede) > 0:
+            placar = score
             player.state = 2
-            exp = Explosao(player.rect.center, assets)
+            WINDOW.fill(BLUE)
+            print(12)
+            exp = Gameover(CENTER, player, assets)
             all_sprites.add(exp)
-
+            
+        
         if player.state == 9:
+            placar = score
             state = GAMEOVER
             game = False
 
@@ -153,7 +167,7 @@ def pagina_jogo(WINDOW):
 
         text_surface = assets[SCORE_FONTE].render("RATOS PAPADOS:  {} ".format(score), True, (BLACK))
         text_rect = text_surface.get_rect()
-        text_rect.midtop = (WIDTH / 2,  10)
+        text_rect.midtop = (WIDTH / 2,  0)
         WINDOW.blit(text_surface, text_rect)
 
         pygame.display.update()  # Mostra o novo frame para o jogador 

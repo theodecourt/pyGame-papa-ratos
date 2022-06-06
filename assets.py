@@ -15,7 +15,7 @@ NEUTRO_IMG = 'neutro'
 BODY_IMG = 'body'
 RAT_IMG = 'rato'
 WALL_IMG = 'parede'
-explosao_animacao = 'explosao_animacao'
+DEAD_IMG = 'cobra_morta'
 
 
 #animacoes
@@ -52,13 +52,13 @@ def carrega_assets():
     assets[WALL_IMG] = pygame.transform.scale(assets[WALL_IMG], (SIZE, SIZE))
 
     lista_animacao = []
-    for imagem in range(9):
+    for imagem in range(1, 9):
         filename = pygame.image.load('assets/imagens/cobrabateu0.png').convert_alpha()
 
-        img = pygame.transform.scale(filename, (imagem*100, imagem*100))
+        img = pygame.transform.scale(filename, (imagem*70, imagem*70))
         lista_animacao.append(img)
     
-    assets[explosao_animacao] = lista_animacao
+    assets[DEAD_IMG] = lista_animacao
     
     # Carrega os sons do jogo
     #pygame.mixer.music.load('assets/sons/tgfcoder-FrozenJam-SeamlessLoop.ogg')
