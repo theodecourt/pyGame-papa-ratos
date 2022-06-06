@@ -7,11 +7,7 @@ from pag_jogo import *
 
 
 def perdeu(WINDOW):
-    print(placar)
 
-    #texto MAS SEPA NAO PRECISA DISSO
-    #font = pygame.font.SysFont(None, 54)
-    #font2 = pygame.font.SysFont(None, 70)
 
     
     clock = pygame.time.Clock()
@@ -35,24 +31,9 @@ def perdeu(WINDOW):
                 if event.key == pygame.K_RETURN:
                     state = GAME
                     game = False
-        text_gameover = assets[GAMEOVER_FONTE].render('GAMEOVER', True, (0, 0, 255))
-        text_playagain = assets[TELAINICIAL_FONTE].render("PLAY AGAIN (PRESS ENTER)", True, (BLACK)) #VER SE PCS DO PARENTESES
-        text_sair = assets[TELAINICIAL_FONTE].render("QUIT (PRESS S)", True, (BLACK)) #VER SE PCS DO PARENTESES
-        WINDOW.fill(RED)
-        vertices = [(250, 100), (750, 100), (750, 200), (250, 200)]
-        pygame.draw.polygon(WINDOW, WHITE, vertices)
-        vertices = [(250, 250), (750, 250), (750, 350), (250, 350)]
-        pygame.draw.polygon(WINDOW, WHITE, vertices)
-        WINDOW.blit(text_gameover, (WIDTH/2, 50))
-        WINDOW.blit(text_playagain, (300, 150))
-        WINDOW.blit(text_sair, (300, 300))
 
-
-        texto_res = assets[SCORE_FONTE].render("VOCE PAPOU {} RATOS!".format('0'), True, (BLACK))
-        text_rect = texto_res.get_rect()
-        text_rect.midtop = (WIDTH / 2,  10)
-        WINDOW.blit(texto_res, text_rect)
-        
+        WINDOW.blit(assets[PAG_GAMEOVER], (0, 0))
+       
         pygame.display.update()
 
     return state

@@ -60,12 +60,13 @@ def pagina_jogo(WINDOW):
     NIVEL = 1
     score = 0 
     placar = 0
-    se_comeu = 'n'
+    count = 1
 
 
 
     game = True
     while game:
+        se_comeu = 'n'
         if placar >= score:
             placar = score
         clock.tick(FPS)
@@ -128,7 +129,7 @@ def pagina_jogo(WINDOW):
                 all_sprites.add(r)
                 all_rats.add(r)
 
-                player.size += 5
+                player.size += 7
                 score += 1
 
                 if score%7 == 0:
@@ -138,13 +139,16 @@ def pagina_jogo(WINDOW):
                     
         se_comeu = pygame.sprite.spritecollide(player, all_bodies, False, pygame.sprite.collide_mask)
         for body in se_comeu:
-            if not body.neutro:
+            if not body.neutro and count == 1:
                 se_comeu = 's'
+                count += 1
 
-        if se_comeu == 's':
+        if se_comeu == 's' and player.state == 1:
             player.state = 2
             exp = Gameover(CENTER, player, assets)
             all_sprites.add(exp)
+
+
                 
                 
         bateu_parede = pygame.sprite.spritecollide(player, all_walls, False, pygame.sprite.collide_mask)

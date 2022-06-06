@@ -45,8 +45,10 @@ def carrega_assets():
     assets[RAT_IMG] = pygame.transform.scale(assets[RAT_IMG], (RATO_WIDTH, RATO_HEIGHT))
     assets[WALL_IMG] = pygame.image.load('assets/imagens/parede.png').convert_alpha()
     assets[WALL_IMG] = pygame.transform.scale(assets[WALL_IMG], (SIZE, SIZE))
-    assets[PAG_GAMEOVER] = pygame.image.load('assets/imagens/parede.png').convert_alpha()
-    assets[PAG_GAMEOVER] = pygame.transform.scale(assets[WALL_IMG], (SIZE, SIZE))
+    assets[PAG_GAMEOVER] = pygame.image.load('assets/imagens/finalll.png').convert_alpha()
+    assets[PAG_GAMEOVER] = pygame.transform.scale(assets[PAG_GAMEOVER], (WIDTH, HEIGHT))
+    assets[PAG_INICIAL] = pygame.image.load('assets/imagens/inicialll.png').convert_alpha()
+    assets[PAG_INICIAL] = pygame.transform.scale(assets[PAG_INICIAL], (WIDTH, HEIGHT))
 
 
     lista_animacao = []
