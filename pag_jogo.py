@@ -59,11 +59,15 @@ def pagina_jogo(WINDOW):
     VEL = 2
     NIVEL = 1
     score = 0 
+    placar = 0
+    se_comeu = 'n'
+
 
 
     game = True
     while game:
-        placar = score
+        if placar >= score:
+            placar = score
         clock.tick(FPS)
         # ----- Trata eventos
         for event in pygame.event.get():
@@ -89,7 +93,6 @@ def pagina_jogo(WINDOW):
 
 
         # if player.rect.x < 0 or player.rect.x > (WIDTH - COBRA_WIDTH) or player.rect.y < 0 or player.rect.y > (HEIGHT - COBRA_HEIGHT):
-        #     placar = score
         #   
         #     exp = Gameover(player.rect.center, assets)
         #     all_sprites.add(exp)
@@ -136,19 +139,20 @@ def pagina_jogo(WINDOW):
         se_comeu = pygame.sprite.spritecollide(player, all_bodies, False, pygame.sprite.collide_mask)
         for body in se_comeu:
             if not body.neutro:
-                placar = score
-                WINDOW.fill(BLUE)
-                exp = Gameover(CENTER, player, assets)
-                all_sprites.add(exp)
-                state = GAMEOVER
-                game = False
+                se_comeu = 's'
+
+        if se_comeu == 's':
+            player.state = 2
+            exp = Gameover(CENTER, player, assets)
+            all_sprites.add(exp)
+                
                 
         bateu_parede = pygame.sprite.spritecollide(player, all_walls, False, pygame.sprite.collide_mask)
         if player.state == 1 and len(bateu_parede) > 0:
             player.state = 2
-            WINDOW.fill(BLUE)
             exp = Gameover(CENTER, player, assets)
             all_sprites.add(exp)
+
             
         
         if player.state == 9:

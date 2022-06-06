@@ -9,17 +9,14 @@ from config import *
 #FNT_DIR = path.join(path.dirname(_file_), 'assets', 'font') 
 
 #imagens
-CENARIO = 'cenario'
 HEAD_IMG = 'cabeca'
 NEUTRO_IMG = 'neutro'
 BODY_IMG = 'body'
 RAT_IMG = 'rato'
 WALL_IMG = 'parede'
 DEAD_IMG = 'cobra_morta'
-
-
-#animacoes
-EATING_ANIM = 'eating_anim'
+PAG_INICIAL = 'pag_inicial'
+PAG_GAMEOVER = 'pag_gameover'
 
 #sons
 NHAC_SOUND = 'eat_sound'
@@ -48,8 +45,9 @@ def carrega_assets():
     assets[RAT_IMG] = pygame.transform.scale(assets[RAT_IMG], (RATO_WIDTH, RATO_HEIGHT))
     assets[WALL_IMG] = pygame.image.load('assets/imagens/parede.png').convert_alpha()
     assets[WALL_IMG] = pygame.transform.scale(assets[WALL_IMG], (SIZE, SIZE))
-    assets[WALL_IMG] = pygame.image.load('assets/imagens/parede.png').convert_alpha()
-    assets[WALL_IMG] = pygame.transform.scale(assets[WALL_IMG], (SIZE, SIZE))
+    assets[PAG_GAMEOVER] = pygame.image.load('assets/imagens/parede.png').convert_alpha()
+    assets[PAG_GAMEOVER] = pygame.transform.scale(assets[WALL_IMG], (SIZE, SIZE))
+
 
     lista_animacao = []
     for imagem in range(1, 9):

@@ -5,7 +5,9 @@ from assets import *
 from eskelleton import *
 from pag_jogo import *
 
+
 def perdeu(WINDOW):
+    print(placar)
 
     #texto MAS SEPA NAO PRECISA DISSO
     #font = pygame.font.SysFont(None, 54)
@@ -46,7 +48,7 @@ def perdeu(WINDOW):
         WINDOW.blit(text_sair, (300, 300))
 
 
-        texto_res = assets[SCORE_FONTE].render("VOCE PAPOU {} RATOS!".format(0), True, (BLACK))
+        texto_res = assets[SCORE_FONTE].render("VOCE PAPOU {} RATOS!".format('0'), True, (BLACK))
         text_rect = texto_res.get_rect()
         text_rect.midtop = (WIDTH / 2,  10)
         WINDOW.blit(texto_res, text_rect)
