@@ -17,7 +17,7 @@ FPS = 60
 
 #infos cobra
 COBRA_WIDTH, COBRA_HEIGHT = 10, 10
-RATO_WIDTH, RATO_HEIGHT = 20, 20
+RATO_WIDTH, RATO_HEIGHT = 30, 30
 
 #estados de jogos
 INIT = 0
