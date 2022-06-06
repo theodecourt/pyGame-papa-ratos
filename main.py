@@ -1,3 +1,4 @@
+from doctest import script_from_examples
 import pygame
 from config import *
 #from assets import *
@@ -8,6 +9,8 @@ from gameover import *
 
 pygame.init() 
 pygame.mixer.init()
+
+
 
 #especificacoes tela
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
