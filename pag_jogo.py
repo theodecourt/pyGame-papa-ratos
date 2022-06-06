@@ -125,12 +125,11 @@ def pagina_jogo(WINDOW):
                 all_sprites.add(r)
                 all_rats.add(r)
 
-                player.size += 1
+                player.size += 3
                 score += 1
 
                 if score%5 == 0:
                     VEL += 0.2
-
                 
                     
         se_comeu = pygame.sprite.spritecollide(player, all_bodies, False, pygame.sprite.collide_mask)

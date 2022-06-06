@@ -67,10 +67,7 @@ class RAT(pygame.sprite.Sprite):
         
 
     def update(self):
-        
         pass
-
-
 
 class BODY(pygame.sprite.Sprite):
     def __init__(self, assets, center, neutro=True):
@@ -117,7 +114,7 @@ class Gameover(pygame.sprite.Sprite):
         self.rect.center = center
 
         self.last_update = pygame.time.get_ticks()
-        self.frame_ticks = 50
+        self.frame_ticks = 100
         self.player = player
         
 
