@@ -25,7 +25,6 @@ while state != QUIT:
         state = pagina_jogo(WINDOW)
     elif state == GAMEOVER:
         state = perdeu(WINDOW)
-        print(state)
     else:
         state = QUIT
         

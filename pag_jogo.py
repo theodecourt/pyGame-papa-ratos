@@ -35,8 +35,6 @@ def pagina_jogo(WINDOW):
     
     font = pygame.font.Font(None, 60)
 
-    score = 0 
-
     groups = {}
     groups['all_sprites'] = all_sprites
     groups['all_bodies'] = all_sprites
@@ -59,6 +57,8 @@ def pagina_jogo(WINDOW):
 
     clock = pygame.time.Clock()
     VEL = 2
+    NIVEL = 1
+    score = 0 
 
 
     game = True
@@ -90,7 +90,7 @@ def pagina_jogo(WINDOW):
 
         # if player.rect.x < 0 or player.rect.x > (WIDTH - COBRA_WIDTH) or player.rect.y < 0 or player.rect.y > (HEIGHT - COBRA_HEIGHT):
         #     placar = score
-        #     print(3)
+        #   
         #     exp = Gameover(player.rect.center, assets)
         #     all_sprites.add(exp)
         #     game = False
@@ -125,11 +125,12 @@ def pagina_jogo(WINDOW):
                 all_sprites.add(r)
                 all_rats.add(r)
 
-                player.size += 3
+                player.size += 5
                 score += 1
 
-                if score%5 == 0:
-                    VEL += 0.2
+                if score%7 == 0:
+                    VEL += 0.05
+                    NIVEL += 1
                 
                     
         se_comeu = pygame.sprite.spritecollide(player, all_bodies, False, pygame.sprite.collide_mask)
@@ -137,7 +138,6 @@ def pagina_jogo(WINDOW):
             if not body.neutro:
                 placar = score
                 WINDOW.fill(BLUE)
-                print(2)
                 exp = Gameover(CENTER, player, assets)
                 all_sprites.add(exp)
                 state = GAMEOVER
@@ -145,16 +145,13 @@ def pagina_jogo(WINDOW):
                 
         bateu_parede = pygame.sprite.spritecollide(player, all_walls, False, pygame.sprite.collide_mask)
         if player.state == 1 and len(bateu_parede) > 0:
-            placar = score
             player.state = 2
             WINDOW.fill(BLUE)
-            print(12)
             exp = Gameover(CENTER, player, assets)
             all_sprites.add(exp)
             
         
         if player.state == 9:
-            placar = score
             state = GAMEOVER
             game = False
 
@@ -169,6 +166,12 @@ def pagina_jogo(WINDOW):
         text_rect.midtop = (WIDTH / 2,  0)
         WINDOW.blit(text_surface, text_rect)
 
-        pygame.display.update()  # Mostra o novo frame para o jogador 
+        text_level = assets[SCORE_FONTE].render("NIVEL:  {} ".format(NIVEL), True, (BLACK))
+        text_rect = text_level.get_rect()
+        text_rect.midtop = (60,  0)
+        WINDOW.blit(text_level, text_rect)
+
+        pygame.display.update()  # Mostra o novo frame para o jogador
+        
     
     return state

@@ -102,7 +102,6 @@ class WALLS(pygame.sprite.Sprite):
 class Gameover(pygame.sprite.Sprite):
     # Construtor da classe.
     def __init__(self, center, player, assets):
-        print("esse", center)
 
         pygame.sprite.Sprite.__init__(self)
 
@@ -119,7 +118,6 @@ class Gameover(pygame.sprite.Sprite):
         
 
     def update(self):
-        print("rect", self.rect)
 
         agora = pygame.time.get_ticks()
 
@@ -129,7 +127,6 @@ class Gameover(pygame.sprite.Sprite):
             
             self.last_update = agora
             self.frame += 1
-            print('frame', self.frame)
             if self.frame == len(self.animacao_morte):
                 self.player.state = 9
                 self.kill()
@@ -139,4 +136,3 @@ class Gameover(pygame.sprite.Sprite):
                 self.image = self.animacao_morte[self.frame]
                 self.rect = self.image.get_rect()
                 self.rect.center = center
-                print("aqui", center)
