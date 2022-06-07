@@ -62,10 +62,10 @@ def pagina_jogo(WINDOW):
     placar = 0
     count = 1
 
-
-
+    
     assets[BATIDA_SOUND].play(loops=-1)
     pygame.mixer.music.set_volume(0.4)
+
     game = True
     while game:
         se_comeu = 'n'
@@ -134,7 +134,7 @@ def pagina_jogo(WINDOW):
                 player.size += 7
                 score += 1
 
-                if score%7 == 0:
+                if score%10 == 0:
                     VEL += 0.05
                     NIVEL += 1
                 
