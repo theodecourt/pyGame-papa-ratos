@@ -64,6 +64,8 @@ def pagina_jogo(WINDOW):
 
 
 
+    assets[BATIDA_SOUND].play(loops=-1)
+    pygame.mixer.music.set_volume(0.4)
     game = True
     while game:
         se_comeu = 'n'
