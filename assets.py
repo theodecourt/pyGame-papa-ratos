@@ -65,8 +65,8 @@ def carrega_assets():
     #pygame.mixer.music.set_volume(0.4)
     assets[NHAC_SOUND] = pygame.mixer.Sound('assets/sons/cobracomendocurto.wav')
     #assets[EW_SOUND] = pygame.mixer.Sound('assets/snd/expl6.wav')
-    assets[BATIDA_SOUND] = pygame.mixer.Sound('assets/sons/musicacobrinha.wav.icloud')
-    #assets[DIE_SOUND] = pygame.mixer.Sound('assets/snd/pew.wav')
+    assets[BATIDA_SOUND] = pygame.mixer.Sound('assets/sons/musicacobrinha.wav')
+    assets[DIE_SOUND] = pygame.mixer.Sound('assets/sons/som_gameoveroficial.wav')
 
     #carrega as fontes do jogo
     assets[SCORE_FONTE] = pygame.font.Font(('assets/fontes/fonte_score.ttf'), 28)

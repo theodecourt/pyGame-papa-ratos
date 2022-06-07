@@ -62,7 +62,7 @@ def pagina_jogo(WINDOW):
     placar = 0
     count = 1
 
-    
+
     assets[BATIDA_SOUND].play(loops=-1)
     pygame.mixer.music.set_volume(0.4)
 
@@ -149,6 +149,8 @@ def pagina_jogo(WINDOW):
             player.state = 2
             exp = Gameover(CENTER, player, assets)
             all_sprites.add(exp)
+            assets[BATIDA_SOUND].stop()
+            assets[DIE_SOUND].play()
 
 
                 
@@ -158,7 +160,8 @@ def pagina_jogo(WINDOW):
             player.state = 2
             exp = Gameover(CENTER, player, assets)
             all_sprites.add(exp)
-
+            assets[BATIDA_SOUND].stop()
+            assets[DIE_SOUND].play()
             
         
         if player.state == 9:

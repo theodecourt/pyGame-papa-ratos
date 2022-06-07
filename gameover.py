@@ -8,14 +8,15 @@ from pag_jogo import *
 
 def perdeu(WINDOW):
 
-
     
     clock = pygame.time.Clock()
     assets = carrega_assets()
+ 
     
     state = GAMEOVER
     game = True
     while game:
+    
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
