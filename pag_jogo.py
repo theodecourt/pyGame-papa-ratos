@@ -135,7 +135,7 @@ def pagina_jogo(WINDOW):
                 score += 1
 
                 if score%10 == 0:
-                    VEL += 0.02
+                    VEL += 0.05
                     NIVEL += 1
                 
                     
