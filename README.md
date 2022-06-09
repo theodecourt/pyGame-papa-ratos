@@ -13,7 +13,7 @@ Esse jogo consiste em uma cobra situada em um labirinto e, como objetivo princip
 - Não é possível inverter o sentido do seu caminho. Por exemplo, se estiver indo para a direita, ao apertar a seta esquerda, ela não se moverá. É necessário que ela ande ou para cima ou para baixo antes.
 - Caso dê GAMEOVER, pressione a tecla "ENTER" para jogar novamente ou pressione a tecla "S" para sair.
 
-# Vídeo-modelo:
+# Vídeo-modelo: https://youtu.be/NemZyyBouPo 
 
 # Referências
 - Imagem do tijolo retirada de: https://www.vectorstock.com/royalty-free-vector/brick-wall-background-cartoon-vector-23715248 
