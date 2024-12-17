@@ -28,6 +28,8 @@ Esse jogo consiste em uma cobra situada em um labirinto e, como objetivo princip
 
 # Feito por:
 
-Camila Consentino \n
-Maria Vitoria Sartori \n
+Camila Consentino 
+
+Maria Vitoria Sartori 
+
 Theo Decourt
